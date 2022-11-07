@@ -1,0 +1,41 @@
+class AppStrings {
+
+  static const String noRoutFound = "No Route Found";
+  static const String projectBank = "OpenEyes Projects Bank";
+  static const String emailAddress = "Email Address";
+  static const String emailHint = 'Enter an email';
+  static const String emailRequired = "Email is required";
+  static const String password = "Password";
+  static const String passwordHint = 'Enter a password';
+  static const String passwordRequired = "Password is required";
+  static const String login = "Login";
+  static const String reset = "Reset";
+  static const String forgetPassword1 = "Forget password?";
+  static const String signIn = "Sign In";
+  static const String signInHint = "Enter your details to Sign In:";
+  static const String submit = "Submit";
+  static const String forgotPassword = "Forget password";
+  static const String forgotPassSubTitle = "Enter your details to Forgot Password";
+  static const String role = "Role";
+  static const String roleHint = "Select Role";
+  static const String userName = "Username";
+  static const String userNameHint = "Enter Username";
+  static const String enterPassword = "Enter Password";
+  static const String save = "Save";
+  static const String addCredentials = "Add Credentials";
+  static const String edit = "Edit";
+  static const String delete = "Delete";
+  static const String loading = "Loading...";
+  static const String retry_again = "Retry Again";
+  static const String ok = "Ok";
+  static const String projectHint = "Select Project";
+  static const String project = "Project";
+  static const String deployHint = "Select Hosting Account";
+  static const String deploy = "Hosting Account";
+  static const String environmentHint = "Select Environment";
+  static const String environment = "Environment";
+  static const String typeHint = "Select Type";
+  static const String type = "Type";
+  static const String filter = "Filter";
+  static const String clear = "Clear Filter";
+}
