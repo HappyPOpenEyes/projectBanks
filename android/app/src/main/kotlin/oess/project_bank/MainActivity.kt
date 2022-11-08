@@ -1,4 +1,4 @@
-package oess.project_bank
+package com.oess.projectbank
 
 import io.flutter.embedding.android.FlutterActivity
 
