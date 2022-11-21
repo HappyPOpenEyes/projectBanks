@@ -18,6 +18,7 @@ abstract class RemoteDataSource {
   Future<CredentialResponse> getCredentials(CredentialsRequest credentialsRequest);
   Future<AddCredentialResponse>addcredential(AddCredentialsRequest addCredentialsRequest);
   Future<DeleteCredentialResponse> deletecredential(DeleteCredentialsRequest deleteCredentialsRequest);
+  Future<AddHostingResponse> addHosting(AddHostingRequest addHostingRequest);
 }
 
 class RemoteDataSourceImplementer implements RemoteDataSource {
@@ -68,5 +69,10 @@ class RemoteDataSourceImplementer implements RemoteDataSource {
   @override
   Future<DeleteCredentialResponse> deletecredential(DeleteCredentialsRequest deleteCredentialsRequest) async {
     return await _appServiceClient.deletecredential(instance<AppPreferences>().getAuthenticationToken(),deleteCredentialsRequest.hosting_id);
+  }
+
+  @override
+  Future<AddHostingResponse> addHosting(AddHostingRequest addHostingRequest) async {
+    return await _appServiceClient.addHosting(instance<AppPreferences>().getAuthenticationToken(),addHostingRequest.hosting_id,addHostingRequest.is_active,addHostingRequest.project_detail_id,addHostingRequest.deployto_id,addHostingRequest.environment_id,addHostingRequest.server_name_id,addHostingRequest.type_id,addHostingRequest.git_repo,addHostingRequest.branch_id,addHostingRequest.remote_folder,addHostingRequest.url,addHostingRequest.admin_url,addHostingRequest.technology,addHostingRequest.created_by,addHostingRequest.updated_by,addHostingRequest.created_at,addHostingRequest.updated_at);
   }
 }

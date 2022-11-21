@@ -85,10 +85,14 @@ extension BranchResponseMapper on BranchResponse? {
     return BranchData(this?.id?.orEmpty() ?? EMPTY,this?.display_text?.orEmpty() ?? EMPTY,this?.branch?.orEmpty() ?? EMPTY);
   }
 }
-
+extension UserResponseMapper on UserResponse? {
+  UserData toDomain() {
+    return UserData(this?.id?.orEmpty() ?? EMPTY,this?.full_name?.orEmpty() ?? EMPTY);
+  }
+}
 extension HostingDataResponseMapper on HostingDataResponse? {
   GetHostingData toDomain() {
-    return GetHostingData(this?.id?.orEmpty() ?? EMPTY,this?.project_detail_id?.orEmpty() ?? EMPTY,this?.git_repo?.orEmpty() ?? EMPTY,this?.remote_folder?.orEmpty() ?? EMPTY,this?.url?.orEmpty() ?? EMPTY,this?.admin_url?.orEmpty() ?? EMPTY,this?.technology?.orEmpty() ?? EMPTY,this?.created_by?.orEmpty() ?? EMPTY,this?.created_at?.orEmpty() ?? EMPTY,this?.projectResponse?.toDomain(),this?.environmentResponse?.toDomain(),this?.deployToResponse?.toDomain(),this?.serverNameResponse?.toDomain(),this?.typeResponse?.toDomain(),this?.branchResponse?.toDomain(),this?.is_active?.orZero()??ZERO);
+    return GetHostingData(this?.id?.orEmpty() ?? EMPTY,this?.project_detail_id?.orEmpty() ?? EMPTY,this?.git_repo?.orEmpty() ?? EMPTY,this?.remote_folder?.orEmpty() ?? EMPTY,this?.url?.orEmpty() ?? EMPTY,this?.admin_url?.orEmpty() ?? EMPTY,this?.technology?.orEmpty() ?? EMPTY,this?.created_by?.orEmpty() ?? EMPTY,this?.created_at?.orEmpty() ?? EMPTY,this?.projectResponse?.toDomain(),this?.environmentResponse?.toDomain(),this?.deployToResponse?.toDomain(),this?.serverNameResponse?.toDomain(),this?.typeResponse?.toDomain(),this?.branchResponse?.toDomain(),this?.is_active?.orZero()??ZERO,this?.userResponse.toDomain());
   }
 }
 extension HostingResponseMapper on HostingResponse? {
@@ -141,5 +145,10 @@ extension AddCredentialResponseMapper on AddCredentialResponse? {
   AddCredentialsObject toDomain() {
     return AddCredentialsObject(
         this?.addCredentialDataResponse?.toDomain(),);
+  }
+}
+extension AddHostingResponseMapper on AddHostingResponse? {
+  ForgotPassword toDomain() {
+    return ForgotPassword(this?.data?.orEmpty() ?? EMPTY);
   }
 }

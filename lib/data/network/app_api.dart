@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -46,6 +48,28 @@ abstract class AppServiceClient {
   Future<DeleteCredentialResponse> deletecredential(
       @Header("Authorization") String token,
       @Field("id") String credentialId,
+      );
+
+  @POST("/addhosting")
+  Future<AddHostingResponse> addHosting(
+      @Header("Authorization") String token,
+      @Field("id") String hostingId,
+      @Field("is_active") bool isActive,
+      @Field("project_detail_id") String project_detail_id,
+      @Field("deployto_id") String deployto_id,
+      @Field("environment_id") String environment_id,
+      @Field("server_name_id") String server_name_id,
+      @Field("type_id") String type_id,
+      @Field("git_repo") String git_repo,
+      @Field("branch_id") String branch_id,
+      @Field("remote_folder") String remote_folder,
+      @Field("url") String url,
+      @Field("admin_url") String admin_url,
+      @Field("technology") String technology,
+      @Field("created_by") String created_by,
+      @Field("updated_by") String updated_by,
+      @Field("created_at") String created_at,
+      @Field("updated_at") String updated_at,
       );
 
   @POST("/password/email")

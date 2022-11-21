@@ -29,7 +29,6 @@ class _HostingDetailsState extends State<HostingDetails> {
     _viewModel.setProjectId(widget.hostingData?.project_detail_id ?? "");
     _viewModel.setRequestDataForCredential(widget.hostingData?.project_detail_id ?? "", widget.hostingData?.id ?? "");
     _viewModel.start();
-
   }
 
   @override
@@ -81,7 +80,7 @@ class _HostingDetailsState extends State<HostingDetails> {
               children: [
                 _getRow('Project Name:',widget.hostingData?.projectData?.name,AppPadding.p16,AppPadding.p16),
                 _getRow('Deploy To:',widget.hostingData?.deployToData?.display_text,AppPadding.p0,AppPadding.p16),
-                _getRow('Enviorment:',widget.hostingData?.environmentData?.display_text,AppPadding.p0,AppPadding.p16),
+                _getRow('Environment:',widget.hostingData?.environmentData?.display_text,AppPadding.p0,AppPadding.p16),
                 _getRow('Server Name:',widget.hostingData?.serverNameData?.display_text,AppPadding.p0,AppPadding.p16),
                 _getRow('Type:',widget.hostingData?.typeData?.display_text,AppPadding.p0,AppPadding.p16),
                 _getRow('Git repository:',widget.hostingData?.git_repo,AppPadding.p0,AppPadding.p16),
@@ -90,34 +89,88 @@ class _HostingDetailsState extends State<HostingDetails> {
                 _getRow('Url:',widget.hostingData?.url,AppPadding.p0,AppPadding.p16),
                 _getRow('Admin Url:',widget.hostingData?.admin_url,AppPadding.p0,AppPadding.p16),
                 _getRow('Technology:',widget.hostingData?.technology,AppPadding.p0,AppPadding.p16),
-                _getRow('Created By:',widget.hostingData?.created_by,AppPadding.p0,AppPadding.p16),
+                _getRow('Created By:',widget.hostingData?.userData?.full_name,AppPadding.p0,AppPadding.p16),
                 _getRow('Created At:',widget.hostingData?.created_at,AppPadding.p0,AppPadding.p16),
-                Padding(padding: EdgeInsets.all(AppPadding.p16),child:
+                Padding(padding: const EdgeInsets.all(AppPadding.p16),child:
 
                 ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
               //scrollDirection: Axis.vertical,
                      shrinkWrap: true,
-                     itemCount:_viewModel.rolesData.length,
+                     itemCount:_viewModel.rolesData.length+1,
                      itemBuilder: (BuildContext context, int index) {
                      // print(snapshot.data?.rolesData.length);
-                      return Column(children: [
+                      return index== 0 ? Column(
+                        children: [
+                        IntrinsicHeight(
+                          child: Container(
+                           color: Colors.grey,
+                            height: AppSize.s40,
+                            child:Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+
+                              SizedBox(
+                                width: AppSize.s60,
+                               // height: AppSize.s40,
+                                  child: Text('Role Name',textAlign:TextAlign.center,),
+                              ),
+                              VerticalDivider(
+                                color: Colors.white,  //color of divider
+                                width: 10, //width space of divider
+                                thickness: 5, //thickness of divier line
+                              ),
+                              SizedBox(
+                                width: AppSize.s210,
+                               // height: AppSize.s40,
+                                child: Text('User Name'),
+                              )
+                            ],),
+                        ),
+                        ),
+                        // Container(
+                        //  // color: Colors.red,
+                        //   width:100,child: Text('QA',style: Theme.of(context).textTheme.headline3,
+                        // ),
+                        // ),
+                        // Container(
+                        //   //color: Colors.blue,
+                        //   width: 200,child: Text('mkagrana@theopeneyes.com mkagrana@theopeneyes.com nikhil.pithadiya@theopeneyes.in nikhil.pithadiya@theopeneyes.in',style: Theme.of(context).textTheme.subtitle1,
+                        // ),
+                        // ),
+
+                        const Divider(
+                          height: AppSize.s14,
+                          thickness: 5,
+                          color: Colors.white,
+                        ),
+
+                        /*VerticalDivider(color: Colors.black,
+                          thickness: 2, width: 20,
+                          indent: 50,
+                          endIndent: 50,),
+                        Container(
+                          color: Colors.blue,
+                          height: 50,
+                          width: 100,
+                        ),*/
+                      ],
+                      ) : Column(children: [
                         IntrinsicHeight(
                           child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                             SizedBox(
                               width: AppSize.s60,
-                              child: Text('${snapshot.data?.rolesData[index].role_name}',style: Theme.of(context).textTheme.headline3),
+                              child: Text('${snapshot.data?.rolesData[index-1].role_name}',style: Theme.of(context).textTheme.headline3,textAlign:TextAlign.center),
 
                             ),
-                            VerticalDivider(
+                            const VerticalDivider(
                               color: Colors.grey,  //color of divider
                               width: 10, //width space of divider
                               thickness: 5, //thickness of divier line
                             ),
                             SizedBox(
                               width: AppSize.s210,
-                              child: Text('${snapshot.data?.rolesData[index].credentials}'),
+                              child: Text('${snapshot.data?.rolesData[index-1].credentials}'),
                             )
                           ],),
                         ),

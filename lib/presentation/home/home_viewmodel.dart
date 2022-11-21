@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:project_bank/domain/usecase/addhosting_usecase.dart';
 import 'package:project_bank/domain/usecase/hosting_usecase.dart';
 import 'package:project_bank/presentation/base/baseviewmodel.dart';
 import 'package:rxdart/rxdart.dart';
@@ -14,10 +15,11 @@ import '../resources/routes_manager.dart';
 
 class HomeViewModel extends BaseViewModel with HomeViewModelInputs, HomeViewModelOutputs{
   HostingUseCase _homeUseCase;
+  AddHostingUseCase _addHostingUseCase;
   final _dataStreamController = BehaviorSubject<HomeViewObject>();
   StreamController isUserUnauthorizedStreamController = StreamController<
       bool>();
-  HomeViewModel(this._homeUseCase);
+  HomeViewModel(this._homeUseCase,this._addHostingUseCase);
   List<GetHostingData> hostingData =[];
   List<ProjectData>projectData =[];
   List<EnvironmentData> environmentData =[];
@@ -26,9 +28,9 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInputs, HomeViewMode
   @override
   void start() {
     // TODO: implement start
-    _getHome();
+    getHome();
   }
-  _getHome() async {
+  getHome() async {
     inputState.add(LoadingState(
         stateRendererType: StateRendererType.FULL_SCREEN_LOADING_STATE));
 
@@ -100,6 +102,28 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInputs, HomeViewMode
         }
     }
     });
+  }
+
+  @override
+  addHostingIsActive(GetHostingData hostingData) async {
+
+    inputState.add(
+        LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
+    (await _addHostingUseCase.execute(
+        AddHostingUseCaseInput(hostingData.id,hostingData.is_active==1? false : true,hostingData.project_detail_id,hostingData.deployToData?.id,hostingData.environmentData?.id,hostingData.serverNameData?.id,hostingData.typeData?.id,hostingData.git_repo,hostingData.branchData?.id,hostingData.remote_folder,hostingData.url,hostingData.admin_url,hostingData.technology,hostingData.created_by,"",hostingData.created_at,"")))
+        .fold(
+            (failure) =>
+        {
+          // left -> failure
+          inputState.add(ErrorState(
+              StateRendererType.POPUP_ERROR_STATE, failure.message))
+        },
+            (data) async {
+          // right -> success (data)
+          inputState.add(SuccessState("Credential Saved!"));
+
+          // navigate to main screen after the login
+        });
   }
 
   @override

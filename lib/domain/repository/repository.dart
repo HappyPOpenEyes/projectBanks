@@ -14,4 +14,5 @@ abstract class Repository{
   Future<Either<Failure,AddCredentialsObject>> addcredential(AddCredentialsRequest addCredentialsRequest);
   Future<Either<Failure,DeleteCredential>> deleteCredential(DeleteCredentialsRequest deleteCredentialsRequest);
   Future<Either<Failure,ForgotPassword>> forgotPassword(ForgotPasswordRequest forgotPasswordRequest);
+  Future<Either<Failure,ForgotPassword>> addHosting(AddHostingRequest addHostingRequest);
 }

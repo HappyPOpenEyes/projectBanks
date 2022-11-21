@@ -203,12 +203,27 @@ class BranchResponse  {
       _$BranchResponseFromJson(json);
 }
 @JsonSerializable()
+class UserResponse  {
+  @JsonKey(name: 'id')
+  String id;
+  @JsonKey(name: 'full_name')
+  String full_name;
+
+  UserResponse (this.id, this.full_name);
+
+// toJson
+  Map<String, dynamic> toJson() => _$UserResponseToJson(this);
+
+//fromJson
+  factory UserResponse.fromJson(Map<String, dynamic> json) =>
+      _$UserResponseFromJson(json);
+}
+@JsonSerializable()
 class HostingDataResponse {
   @JsonKey(name: 'id')
   String? id;
   @JsonKey(name: 'project_detail_id')
   String? project_detail_id;
-
   @JsonKey(name: 'git_repo')
   String? git_repo;
   @JsonKey(name: 'remote_folder')
@@ -223,7 +238,6 @@ class HostingDataResponse {
   String? created_by;
   @JsonKey(name: 'created_at')
   String? created_at;
-
   @JsonKey(name: "project")
   ProjectResponse projectResponse;
   @JsonKey(name: "environment")
@@ -236,9 +250,11 @@ class HostingDataResponse {
   TypeResponse ? typeResponse;
   @JsonKey(name: "branch")
   BranchResponse ? branchResponse;
+  @JsonKey(name: "user")
+  UserResponse ? userResponse;
   @JsonKey(name: 'is_active')
   int? is_active;
-  HostingDataResponse(this.id,this.project_detail_id,this.git_repo,this.remote_folder,this.url,this.admin_url,this.technology,this.created_at,this.created_by,this.projectResponse,this.environmentResponse,this.deployToResponse,this.serverNameResponse,this.typeResponse,this.branchResponse,this.is_active);
+  HostingDataResponse(this.id,this.project_detail_id,this.git_repo,this.remote_folder,this.url,this.admin_url,this.technology,this.created_at,this.created_by,this.projectResponse,this.environmentResponse,this.deployToResponse,this.serverNameResponse,this.typeResponse,this.branchResponse,this.userResponse,this.is_active);
   // from json
   factory HostingDataResponse.fromJson(Map<String, dynamic> json) =>
       _$HostingDataResponseFromJson(json);
@@ -401,4 +417,17 @@ class ForgotPassResponse extends BaseResponse  {
 
 // to json
   Map<String, dynamic> toJson() => _$ForgotPassResponseToJson(this);
+}
+
+@JsonSerializable()
+class AddHostingResponse extends BaseResponse  {
+  @JsonKey(name: "data")
+  String? data;
+  AddHostingResponse(this.data);
+  // from json
+  factory AddHostingResponse.fromJson(Map<String, dynamic> json) =>
+      _$AddHostingResponseFromJson(json);
+
+// to json
+  Map<String, dynamic> toJson() => _$AddHostingResponseToJson(this);
 }

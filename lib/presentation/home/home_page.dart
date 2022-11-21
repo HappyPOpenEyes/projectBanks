@@ -630,7 +630,8 @@ class _HomeViewState extends State<HomeView> {
 
 
                     Expanded(
-                        child: _searchResult.length != 0 || editingController.text.isNotEmpty ? _searchResult.isNotEmpty ? ListView.builder(
+
+                        child: _searchResult.length != 0 || editingController.text.isNotEmpty ? _searchResult.isNotEmpty ?  ListView.builder(
                             itemCount:_searchResult.length, // the length
                             itemBuilder: (context, index) {
                               return  Container(
@@ -665,6 +666,7 @@ class _HomeViewState extends State<HomeView> {
                                               activeColor: ColorManager.primary,
                                               value: parseBool(_searchResult[index].is_active) ,
                                               onChanged: (value) {
+                                                _viewModel.addHostingIsActive(_searchResult[index]);
                                               },
                                             ),
                                           ],
@@ -762,6 +764,7 @@ class _HomeViewState extends State<HomeView> {
                                               activeColor: ColorManager.primary,
                                               value: parseBool(_FilterResult[index].is_active) ,
                                               onChanged: (value) {
+                                                _viewModel.addHostingIsActive(_FilterResult[index]);
                                               },
                                             ),
                                           ],
@@ -824,7 +827,9 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                               );
                             }) : const Center(child: Text('No hosting available')) :
-                        ListView.builder(
+                        RefreshIndicator(
+                         onRefresh: _pullRefresh,
+                            child: ListView.builder(
                             itemCount:_viewModel.hostingData.length, // the length
                             itemBuilder: (context, index) {
                               return Container(
@@ -859,6 +864,7 @@ class _HomeViewState extends State<HomeView> {
                                               activeColor: ColorManager.primary,
                                               value: parseBool(snapshot.data?.getHostingData[index].is_active) ,
                                               onChanged: (value) {
+                                                _viewModel.addHostingIsActive(_viewModel.hostingData[index]);
                                               },
                                             ),
                                           ],
@@ -881,7 +887,7 @@ class _HomeViewState extends State<HomeView> {
                                                   );
                                                 },
 
-                                                child: SvgPicture.asset(ImageAssets.crediantialIc),
+                                                child: SvgPicture.asset(ImageAssets.crediantialIc,color: ColorManager.primary,),
                                               ),
                                             ),
                                             SizedBox(
@@ -898,7 +904,7 @@ class _HomeViewState extends State<HomeView> {
                                                   );
                                                 },
 
-                                                child: SvgPicture.asset(ImageAssets.viewIc),
+                                                child: SvgPicture.asset(ImageAssets.viewIc,color: ColorManager.primary),
                                               ),
                                             ),
                                             // SizedBox(
@@ -921,10 +927,12 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                               );
                             })
-                    )]));
+                    ))]));
         });
   }
-
+  Future<void> _pullRefresh() async {
+   _viewModel.getHome();
+  }
   bool parseBool(int? integer) {
     return integer == 1;
   }

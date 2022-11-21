@@ -211,6 +211,67 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<AddHostingResponse> addHosting(
+    token,
+    hostingId,
+    isActive,
+    project_detail_id,
+    deployto_id,
+    environment_id,
+    server_name_id,
+    type_id,
+    git_repo,
+    branch_id,
+    remote_folder,
+    url,
+    admin_url,
+    technology,
+    created_by,
+    updated_by,
+    created_at,
+    updated_at,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = {
+      'id': hostingId,
+      'is_active': isActive,
+      'project_detail_id': project_detail_id,
+      'deployto_id': deployto_id,
+      'environment_id': environment_id,
+      'server_name_id': server_name_id,
+      'type_id': type_id,
+      'git_repo': git_repo,
+      'branch_id': branch_id,
+      'remote_folder': remote_folder,
+      'url': url,
+      'admin_url': admin_url,
+      'technology': technology,
+      'created_by': created_by,
+      'updated_by': updated_by,
+      'created_at': created_at,
+      'updated_at': updated_at,
+    };
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<AddHostingResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/addhosting',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = AddHostingResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<ForgotPassResponse> forgotPass(
     email,
     password,

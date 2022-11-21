@@ -260,6 +260,34 @@ class RepositoryImpl extends Repository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, ForgotPassword>> addHosting(AddHostingRequest addHostingRequest) async {
+    if (await _networkInfo.isConnected) {
+      // its safe to call the API
+      try {
+        final response = await _remoteDataSource.addHosting(addHostingRequest);
+        if (response.status == ResponseCode.SUCCESS) // success
+            {
+          // return data (success)
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // return biz logic error
+          // return left
+          return Left(Failure(response.status ?? ApiInternalStatus.FAILURE,
+              response.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return (Left(ErrorHandler
+            .handle(error)
+            .failure));
+      }
+    } else {
+      // return connection error
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }
 
 

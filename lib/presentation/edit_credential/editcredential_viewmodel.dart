@@ -130,7 +130,8 @@ class EditCredentialViewModel extends BaseViewModel with HostingDetailsViewModel
   }
 
   bool _isUserNameValid(String userName) {
-    return isEmailValid(userName);
+    return userName.isNotEmpty;
+   // return isEmailValid(userName);
   }
   bool _isRoleNameValid(String rollName) {
     return rollName.isNotEmpty;

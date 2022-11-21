@@ -80,6 +80,11 @@ class BranchData {
   String branch;
   BranchData(this.id, this.display_text,this.branch);
 }
+class UserData {
+  String id;
+  String full_name;
+  UserData(this.id, this.full_name);
+}
 class GetHostingData {
   String id;
   String? project_detail_id;
@@ -97,7 +102,8 @@ class GetHostingData {
   ServerNameData? serverNameData;
   TypeData? typeData;
   BranchData? branchData;
-  GetHostingData(this.id,this.project_detail_id,this.git_repo,this.remote_folder,this.url,this.admin_url,this.technology,this.created_by,this.created_at,this.projectData,this.environmentData,this.deployToData,this.serverNameData,this.typeData,this.branchData,this.is_active);
+  UserData? userData;
+  GetHostingData(this.id,this.project_detail_id,this.git_repo,this.remote_folder,this.url,this.admin_url,this.technology,this.created_by,this.created_at,this.projectData,this.environmentData,this.deployToData,this.serverNameData,this.typeData,this.branchData,this.is_active,this.userData);
 }
 class HostingArrayObject {
   List<GetHostingData> getHostingData;

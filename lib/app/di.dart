@@ -2,6 +2,7 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:project_bank/domain/usecase/addcredential_usecase.dart';
+import 'package:project_bank/domain/usecase/addhosting_usecase.dart';
 import 'package:project_bank/domain/usecase/credentials_usecase.dart';
 import 'package:project_bank/domain/usecase/deletecredential_usecase.dart';
 import 'package:project_bank/domain/usecase/forgotpassword_usecase.dart';
@@ -80,8 +81,11 @@ initHostingModule() {
   if (!GetIt.I.isRegistered<HostingUseCase>()) {
     instance.registerFactory<HostingUseCase>(() => HostingUseCase(instance()));
   }
+  if (!GetIt.I.isRegistered<AddHostingUseCase>()) {
+    instance.registerFactory<AddHostingUseCase>(() => AddHostingUseCase(instance()));
+  }
   if (!GetIt.I.isRegistered<HomeViewModel>()) {
-    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
+    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance(),instance()));
   }
 }
 initRolesModule() {

@@ -182,6 +182,17 @@ Map<String, dynamic> _$BranchResponseToJson(BranchResponse instance) =>
       'branch': instance.branch,
     };
 
+UserResponse _$UserResponseFromJson(Map<String, dynamic> json) => UserResponse(
+      json['id'] as String,
+      json['full_name'] as String,
+    );
+
+Map<String, dynamic> _$UserResponseToJson(UserResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'full_name': instance.full_name,
+    };
+
 HostingDataResponse _$HostingDataResponseFromJson(Map<String, dynamic> json) =>
     HostingDataResponse(
       json['id'] as String?,
@@ -211,6 +222,9 @@ HostingDataResponse _$HostingDataResponseFromJson(Map<String, dynamic> json) =>
       json['branch'] == null
           ? null
           : BranchResponse.fromJson(json['branch'] as Map<String, dynamic>),
+      json['user'] == null
+          ? null
+          : UserResponse.fromJson(json['user'] as Map<String, dynamic>),
       json['is_active'] as int?,
     );
 
@@ -232,6 +246,7 @@ Map<String, dynamic> _$HostingDataResponseToJson(
       'servername': instance.serverNameResponse,
       'type': instance.typeResponse,
       'branch': instance.branchResponse,
+      'user': instance.userResponse,
       'is_active': instance.is_active,
     };
 
@@ -398,6 +413,20 @@ ForgotPassResponse _$ForgotPassResponseFromJson(Map<String, dynamic> json) =>
       ..message = json['message'] as String?;
 
 Map<String, dynamic> _$ForgotPassResponseToJson(ForgotPassResponse instance) =>
+    <String, dynamic>{
+      'code': instance.status,
+      'message': instance.message,
+      'data': instance.data,
+    };
+
+AddHostingResponse _$AddHostingResponseFromJson(Map<String, dynamic> json) =>
+    AddHostingResponse(
+      json['data'] as String?,
+    )
+      ..status = json['code'] as int?
+      ..message = json['message'] as String?;
+
+Map<String, dynamic> _$AddHostingResponseToJson(AddHostingResponse instance) =>
     <String, dynamic>{
       'code': instance.status,
       'message': instance.message,

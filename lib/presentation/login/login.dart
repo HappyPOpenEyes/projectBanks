@@ -222,7 +222,7 @@ class _LoginViewState extends State<LoginView> {
                           _passwordController.clear();
 
                         },style: ElevatedButton.styleFrom(
-                          primary: ColorManager.green,
+                          backgroundColor: ColorManager.green,
                         ), child: const Text(AppStrings.reset),),
                       )
                     ],
