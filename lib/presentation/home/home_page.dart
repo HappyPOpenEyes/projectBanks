@@ -108,7 +108,7 @@ class _HomeViewState extends State<HomeView> {
       child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(padding: EdgeInsets.only(
+          Padding(padding: const EdgeInsets.only(
               left: AppPadding.p14, right: AppPadding.p12,top: AppPadding.p30,bottom: AppPadding.p20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -326,12 +326,10 @@ class _HomeViewState extends State<HomeView> {
                                 });
 
                                 if (SelectedDeployId != "") {
-                                  print(tempArray.length);
                                   for (int temp = 0; temp <
                                       tempArray.length; temp++) {
                                     if (tempArray[temp].deployToData?.id ==
                                         SelectedDeployId) {
-                                      print("Diff");
                                       tempArray1.add(tempArray[temp]);
                                     }
                                   }
@@ -339,12 +337,10 @@ class _HomeViewState extends State<HomeView> {
                                 }
                                 else {
                                   if (SelectedEnviormnetId != "") {
-                                    print(tempArray1.length);
                                     for (int temp = 0; temp <
                                         tempArray.length; temp++) {
                                       if (tempArray[temp].environmentData?.id ==
                                           SelectedEnviormnetId) {
-                                        print("Diff");
                                         tempArray1.add(tempArray[temp]);
                                       }
                                     }
@@ -357,7 +353,6 @@ class _HomeViewState extends State<HomeView> {
                                           tempArray.length; temp++) {
                                         if (tempArray[temp].typeData?.id ==
                                             SelectedTypeId) {
-                                          print("Diff");
                                           tempArray1.add(tempArray[temp]);
                                         }
                                       }
@@ -371,7 +366,6 @@ class _HomeViewState extends State<HomeView> {
                                       tempArray1.length; temp++) {
                                     if (tempArray1[temp].environmentData?.id ==
                                         SelectedEnviormnetId) {
-                                      print("Diff");
                                       tempArray2.add(tempArray1[temp]);
                                     }
                                   }
@@ -384,7 +378,6 @@ class _HomeViewState extends State<HomeView> {
                                         tempArray1.length; temp++) {
                                       if (tempArray1[temp].typeData?.id ==
                                           SelectedTypeId) {
-                                        print("Diff");
                                         tempArray2.add(tempArray1[temp]);
                                       }
                                     }
@@ -397,7 +390,6 @@ class _HomeViewState extends State<HomeView> {
                                       tempArray2.length; temp++) {
                                     if (tempArray2[temp].typeData?.id ==
                                         SelectedTypeId) {
-                                      print("Diff");
                                       tempArray3.add(tempArray2[temp]);
                                     }
                                   }
@@ -432,20 +424,15 @@ class _HomeViewState extends State<HomeView> {
                                 //
                                 // }
 
-
-                                print("else");
-                                print(_FilterResult.length);
-                                print(tempArray.length);
                               }
                               else {
                                 if (SelectedDeployId != "") {
-                                  print("inside1");
+
                                   for (int temp = 0; temp <
                                       _viewModel.hostingData.length; temp++) {
                                     if (_viewModel.hostingData[temp]
                                         .deployToData?.id ==
                                         SelectedDeployId) {
-                                      print("Diff");
                                       tempArray1.add(
                                           _viewModel.hostingData[temp]);
                                     }
@@ -747,7 +734,7 @@ class _HomeViewState extends State<HomeView> {
                                       _getRow(
                                           'Hosting Account:', _FilterResult[index].deployToData?.display_text??"", AppPadding.p0,
                                           AppPadding.p16),
-                                      _getRow('Enviorment:', _FilterResult[index].environmentData?.display_text??"", AppPadding.p0,
+                                      _getRow('Environment:', _FilterResult[index].environmentData?.display_text??"", AppPadding.p0,
                                           AppPadding.p16),
                                       _getRow(
                                           'Type:',  _FilterResult[index].typeData?.display_text??"", AppPadding.p0, AppPadding.p0),
@@ -847,7 +834,7 @@ class _HomeViewState extends State<HomeView> {
                                       _getRow(
                                           'Hosting Account:', '${snapshot.data?.getHostingData[index].deployToData?.display_text}', AppPadding.p0,
                                           AppPadding.p16),
-                                      _getRow('Enviorment:', '${snapshot.data?.getHostingData[index].environmentData?.display_text}', AppPadding.p0,
+                                      _getRow('Environment:', '${snapshot.data?.getHostingData[index].environmentData?.display_text}', AppPadding.p0,
                                           AppPadding.p16),
                                       _getRow(
                                           'Type:', '${snapshot.data?.getHostingData[index].typeData?.display_text}', AppPadding.p0, AppPadding.p0),
