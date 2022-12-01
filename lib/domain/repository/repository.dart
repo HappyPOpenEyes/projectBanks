@@ -3,6 +3,7 @@ import '../../data/network/failure.dart';
 import '../../data/request/request.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../data/response/response.dart';
 import '../model/model.dart';
 
 abstract class Repository{
@@ -14,5 +15,5 @@ abstract class Repository{
   Future<Either<Failure,AddCredentialsObject>> addcredential(AddCredentialsRequest addCredentialsRequest);
   Future<Either<Failure,DeleteCredential>> deleteCredential(DeleteCredentialsRequest deleteCredentialsRequest);
   Future<Either<Failure,ForgotPassword>> forgotPassword(ForgotPasswordRequest forgotPasswordRequest);
-  Future<Either<Failure,ForgotPassword>> addHosting(AddHostingRequest addHostingRequest);
+  Future<Either<Failure,GetHostingActiveObjectData>> addHosting(AddHostingRequest addHostingRequest);
 }

@@ -2,16 +2,17 @@ import 'package:dartz/dartz.dart';
 import 'package:project_bank/data/request/request.dart';
 
 import '../../data/network/failure.dart';
+import '../../data/response/response.dart';
 import '../model/model.dart';
 import '../repository/repository.dart';
 import 'base_usecase.dart';
 
-class AddHostingUseCase implements BaseUseCase<AddHostingUseCaseInput, ForgotPassword> {
+class AddHostingUseCase implements BaseUseCase<AddHostingUseCaseInput, GetHostingActiveObjectData> {
   Repository _repository;
   AddHostingUseCase(this._repository);
 
   @override
-  Future<Either<Failure, ForgotPassword>> execute(
+  Future<Either<Failure, GetHostingActiveObjectData>> execute(
       AddHostingUseCaseInput input) async {
     return await _repository.addHosting(AddHostingRequest(
         input.hostingId, input.isActive,input.project_detail_id!,input.deployto_id!,input.environment_id!,input.server_name_id!,input.type_id!,input.git_repo,input.branch_id!,input.remote_folder,input.url,input.admin_url,input.technology,input.created_by,input.updated_by,input.created_at,input.updated_at));

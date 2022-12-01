@@ -114,13 +114,16 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInputs, HomeViewMode
         .fold(
             (failure) =>
         {
+          print("False...."),
           // left -> failure
           inputState.add(ErrorState(
               StateRendererType.POPUP_ERROR_STATE, failure.message))
         },
             (data) async {
+               print("True....");
           // right -> success (data)
           inputState.add(SuccessState("Credential Saved!"));
+          getHome();
 
           // navigate to main screen after the login
         });

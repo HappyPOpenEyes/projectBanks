@@ -419,9 +419,52 @@ Map<String, dynamic> _$ForgotPassResponseToJson(ForgotPassResponse instance) =>
       'data': instance.data,
     };
 
+HostingDataActiveResponse _$HostingDataActiveResponseFromJson(
+        Map<String, dynamic> json) =>
+    HostingDataActiveResponse(
+      json['id'] as String?,
+      json['project_detail_id'] as String?,
+      json['deployto_id'] as String?,
+      json['environment_id'] as String?,
+      json['server_name_id'] as String?,
+      json['type_id'] as String?,
+      json['branch_id'] as String?,
+      json['git_repo'] as String?,
+      json['remote_folder'] as String?,
+      json['url'] as String?,
+      json['admin_url'] as String?,
+      json['technology'] as String?,
+      json['created_at'] as String?,
+      json['created_by'] as String?,
+      json['project'] as int?,
+    );
+
+Map<String, dynamic> _$HostingDataActiveResponseToJson(
+        HostingDataActiveResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'project_detail_id': instance.project_detail_id,
+      'deployto_id': instance.deployto_id,
+      'environment_id': instance.environment_id,
+      'server_name_id': instance.server_name_id,
+      'type_id': instance.type_id,
+      'branch_id': instance.branch_id,
+      'git_repo': instance.git_repo,
+      'remote_folder': instance.remote_folder,
+      'url': instance.url,
+      'admin_url': instance.admin_url,
+      'technology': instance.technology,
+      'created_by': instance.created_by,
+      'created_at': instance.created_at,
+      'project': instance.is_active,
+    };
+
 AddHostingResponse _$AddHostingResponseFromJson(Map<String, dynamic> json) =>
     AddHostingResponse(
-      json['data'] as String?,
+      json['data'] == null
+          ? null
+          : HostingDataActiveResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
     )
       ..status = json['code'] as int?
       ..message = json['message'] as String?;
@@ -430,5 +473,5 @@ Map<String, dynamic> _$AddHostingResponseToJson(AddHostingResponse instance) =>
     <String, dynamic>{
       'code': instance.status,
       'message': instance.message,
-      'data': instance.data,
+      'data': instance.hostingDataActiveResponse,
     };

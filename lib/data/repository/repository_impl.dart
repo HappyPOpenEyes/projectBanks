@@ -8,6 +8,7 @@ import '../network/error_handler.dart';
 import '../network/failure.dart';
 import '../network/network_info.dart';
 import '../request/request.dart';
+import '../response/response.dart';
 
 class RepositoryImpl extends Repository {
   RemoteDataSource _remoteDataSource;
@@ -262,7 +263,7 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<Either<Failure, ForgotPassword>> addHosting(AddHostingRequest addHostingRequest) async {
+  Future<Either<Failure, GetHostingActiveObjectData>> addHosting(AddHostingRequest addHostingRequest) async {
     if (await _networkInfo.isConnected) {
       // its safe to call the API
       try {

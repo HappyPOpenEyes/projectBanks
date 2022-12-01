@@ -418,16 +418,59 @@ class ForgotPassResponse extends BaseResponse  {
 // to json
   Map<String, dynamic> toJson() => _$ForgotPassResponseToJson(this);
 }
+@JsonSerializable()
+class HostingDataActiveResponse {
+  @JsonKey(name: 'id')
+  String? id;
+  @JsonKey(name: 'project_detail_id')
+  String? project_detail_id;
+  @JsonKey(name: 'deployto_id')
+  String? deployto_id;
+  @JsonKey(name: 'environment_id')
+  String? environment_id;
+  @JsonKey(name: 'server_name_id')
+  String? server_name_id;
+  @JsonKey(name: 'type_id')
+  String? type_id;
+  @JsonKey(name: 'branch_id')
+  String? branch_id;
+  @JsonKey(name: 'git_repo')
+  String? git_repo;
+  @JsonKey(name: 'remote_folder')
+  String? remote_folder;
+  @JsonKey(name: 'url')
+  String? url;
+  @JsonKey(name: 'admin_url')
+  String? admin_url;
+  @JsonKey(name: 'technology')
+  String? technology;
+  @JsonKey(name: 'created_by')
+  String? created_by;
+  @JsonKey(name: 'created_at')
+  String? created_at;
+  @JsonKey(name: "project")
+  @JsonKey(name: 'is_active')
+  int? is_active;
+
+
+  HostingDataActiveResponse(this.id,this.project_detail_id,this.deployto_id,this.environment_id,this.server_name_id,this.type_id,this.branch_id,this.git_repo,this.remote_folder,this.url,this.admin_url,this.technology,this.created_at,this.created_by,this.is_active);
+  // from json
+  factory HostingDataActiveResponse.fromJson(Map<String, dynamic> json) =>
+      _$HostingDataActiveResponseFromJson(json);
+
+// to json
+  Map<String, dynamic> toJson() => _$HostingDataActiveResponseToJson(this);
+}
 
 @JsonSerializable()
 class AddHostingResponse extends BaseResponse  {
   @JsonKey(name: "data")
-  String? data;
-  AddHostingResponse(this.data);
+  HostingDataActiveResponse? hostingDataActiveResponse;
+  AddHostingResponse(this.hostingDataActiveResponse);
   // from json
+// toJson
+  Map<String, dynamic> toJson() => _$AddHostingResponseToJson(this);
+//fromJson
   factory AddHostingResponse.fromJson(Map<String, dynamic> json) =>
       _$AddHostingResponseFromJson(json);
-
-// to json
-  Map<String, dynamic> toJson() => _$AddHostingResponseToJson(this);
 }

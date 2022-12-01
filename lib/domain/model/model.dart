@@ -105,6 +105,29 @@ class GetHostingData {
   UserData? userData;
   GetHostingData(this.id,this.project_detail_id,this.git_repo,this.remote_folder,this.url,this.admin_url,this.technology,this.created_by,this.created_at,this.projectData,this.environmentData,this.deployToData,this.serverNameData,this.typeData,this.branchData,this.is_active,this.userData);
 }
+
+class GetHostingActiveData {
+  String id;
+  String? project_detail_id;
+  String? deployto_id;
+  String? environment_id;
+  String? server_name_id;
+  String? type_id;
+  String? branch_id;
+  String git_repo;
+  String remote_folder;
+  String url;
+  String admin_url;
+  String technology;
+  String created_by;
+  String created_at;
+  int is_active;
+  GetHostingActiveData(this.id,this.project_detail_id,this.deployto_id,this.environment_id,this.server_name_id,this.type_id,this.branch_id,this.git_repo,this.remote_folder,this.url,this.admin_url,this.technology,this.created_by,this.created_at,this.is_active);
+}
+class GetHostingActiveObjectData {
+  GetHostingActiveData? getHostingActiveData;
+  GetHostingActiveObjectData(this.getHostingActiveData);
+}
 class HostingArrayObject {
   List<GetHostingData> getHostingData;
   HostingArrayObject(this.getHostingData);

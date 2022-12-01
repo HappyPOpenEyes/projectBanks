@@ -1,10 +1,8 @@
 import 'package:project_bank/app/extension.dart';
+import 'package:project_bank/data/response/response.dart';
 
-import '../../domain/model/model.dart';
-import '../../domain/model/model.dart';
 import '../../domain/model/model.dart';
 import '../response/response.dart';
-
 const EMPTY = "";
 const ZERO = 0;
 
@@ -147,8 +145,13 @@ extension AddCredentialResponseMapper on AddCredentialResponse? {
         this?.addCredentialDataResponse?.toDomain(),);
   }
 }
+extension HostingDataActiveResponseMapper on HostingDataActiveResponse? {
+  GetHostingActiveData toDomain() {
+    return GetHostingActiveData(this?.id?.orEmpty() ?? EMPTY,this?.project_detail_id?.orEmpty() ?? EMPTY,this?.deployto_id?.orEmpty() ?? EMPTY,this?.environment_id?.orEmpty() ?? EMPTY,this?.server_name_id?.orEmpty() ?? EMPTY,this?.type_id?.orEmpty() ?? EMPTY,this?.branch_id?.orEmpty() ?? EMPTY,this?.git_repo?.orEmpty() ?? EMPTY,this?.remote_folder?.orEmpty() ?? EMPTY,this?.url?.orEmpty() ?? EMPTY,this?.admin_url?.orEmpty() ?? EMPTY,this?.technology?.orEmpty() ?? EMPTY,this?.created_by?.orEmpty() ?? EMPTY,this?.created_at?.orEmpty() ?? EMPTY,this?.is_active?.orZero()??ZERO);
+  }
+}
 extension AddHostingResponseMapper on AddHostingResponse? {
-  ForgotPassword toDomain() {
-    return ForgotPassword(this?.data?.orEmpty() ?? EMPTY);
+  GetHostingActiveObjectData toDomain() {
+    return GetHostingActiveObjectData(this?.hostingDataActiveResponse?.toDomain());
   }
 }
