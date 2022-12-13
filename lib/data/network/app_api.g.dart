@@ -159,13 +159,25 @@ class _AppServiceClient implements AppServiceClient {
   @override
   Future<AddCredentialResponse> addcredential(
     token,
-    addCredentialArray,
+    projectId,
+    hostingId,
+    isActive,
+    password,
+    projectRoleId,
+    username,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
-    final _data = addCredentialArray;
+    final _data = {
+      'project_detail_id': projectId,
+      'hosting_id': hostingId,
+      'is_active': isActive,
+      'password': password,
+      'project_role_id': projectRoleId,
+      'username': username,
+    };
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AddCredentialResponse>(Options(
       method: 'POST',

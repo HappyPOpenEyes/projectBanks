@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:project_bank/data/mapper/mapper.dart';
 import '../../domain/model/model.dart';
 import '../../domain/repository/repository.dart';
+import '../../presentation/resources/strings_manager.dart';
 import '../data_source/remote_data_source.dart';
 import '../network/error_handler.dart';
 import '../network/failure.dart';
@@ -221,11 +222,8 @@ class RepositoryImpl extends Repository {
                   response.message ?? ResponseMessage.DEFAULT));
         }
     }
-    catch (error) {
-        print("Failure..................2");
-        return (Left(ErrorHandler
-            .handle(error)
-            .failure));
+      catch (error) {
+        return (Left(Failure(ResponseCode.SAME_USER,AppStrings.sameUserError)));
       }
     } else {
       print("Failure..................3");

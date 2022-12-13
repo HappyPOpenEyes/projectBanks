@@ -12,6 +12,7 @@ import '../../domain/usecase/roles_usecase.dart';
 import '../common/freezed_data_classes.dart';
 import '../common/state_renderer/state_renderer.dart';
 import '../common/state_renderer/state_renderer_impl.dart';
+import '../resources/strings_manager.dart';
 
 class EditCredentialViewModel extends BaseViewModel with HostingDetailsViewModelInputs, HostingDetailsViewModelOutputs{
 
@@ -31,6 +32,8 @@ class EditCredentialViewModel extends BaseViewModel with HostingDetailsViewModel
   final AddCredentialUseCase _addCredentialUseCase;
   final _dataStreamController = BehaviorSubject<HostingDetailsViewObject>();
   EditCredentialViewModel(this._rolesUseCase,this._addCredentialUseCase);
+
+  String passwordHint = AppStrings.passwordRequired;
   @override
   void start() {
     // TODO: implement start
@@ -126,7 +129,15 @@ class EditCredentialViewModel extends BaseViewModel with HostingDetailsViewModel
   }
 
   bool _isPasswordValid(String password) {
-    return password.isNotEmpty;
+    if(password.isEmpty){
+    passwordHint = AppStrings.passwordRequired;
+    }
+    else if (!isPasswordValid(password)) {
+      passwordHint = AppStrings.passwordMatch;
+    } else {
+      passwordHint = "";
+    }
+    return isPasswordValid(password);
   }
 
   bool _isUserNameValid(String userName) {
@@ -147,13 +158,13 @@ class EditCredentialViewModel extends BaseViewModel with HostingDetailsViewModel
     inputState.add(
         LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
     (await _addCredentialUseCase.execute(
-        AddCredentialUseCaseInput(addCredentialArray)))
+        AddCredentialUseCaseInput(addCredentialPostObj.projectDetailId,addCredentialPostObj.hostingId,addCredentialPostObj.isActive,addCredentialPostObj.password,addCredentialPostObj.projectRoleId,addCredentialPostObj.username)))
         .fold(
             (failure) =>
         {
           // left -> failure
           inputState.add(ErrorState(
-              StateRendererType.POPUP_ERROR_STATE, failure.message))
+              StateRendererType.POPUP_ERROR_STATE,failure.code == 422 ? AppStrings.sameUserError : failure.message))
         },
             (data) async {
           // right -> success (data)

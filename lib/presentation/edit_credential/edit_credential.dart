@@ -252,7 +252,7 @@ class _EditCredentialState extends State<EditCredential> {
                                 labelText: AppStrings.password,
                                 errorText: (snapshot.data ?? true)
                                     ? null
-                                    : AppStrings.passwordRequired,
+                                    : _viewModel.passwordHint,
                                 suffixIcon: IconButton(icon: Icon(
                                     _isObscure ? Icons.visibility : Icons.visibility_off),
                                   onPressed: (){

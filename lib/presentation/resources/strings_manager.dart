@@ -8,6 +8,7 @@ class AppStrings {
   static const String password = "Password";
   static const String passwordHint = 'Enter a password';
   static const String passwordRequired = "Password is required";
+  static const String passwordMatch = "8 or more characters with a mix of letters, numbers & symbols.";
   static const String login = "Login";
   static const String reset = "Reset";
   static const String forgetPassword1 = "Forget password?";
@@ -38,4 +39,5 @@ class AppStrings {
   static const String type = "Type";
   static const String filter = "Filter";
   static const String clear = "Clear Filter";
+  static const String sameUserError = "The username has already been taken!";
 }

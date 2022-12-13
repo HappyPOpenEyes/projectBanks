@@ -17,8 +17,13 @@ class CredentialsRequest {
   CredentialsRequest(this.project_detail_id,this.hosting_id);
 }
 class AddCredentialsRequest {
-  String addCredentialArray;
-  AddCredentialsRequest(this.addCredentialArray);
+  String project_detail_id;
+  String hosting_id;
+  String isActive;
+  String password;
+  String projectRoleId;
+  String username;
+  AddCredentialsRequest(this.project_detail_id,this.hosting_id,this.isActive,this.password,this.projectRoleId,this.username);
 }
 class DeleteCredentialsRequest {
   String hosting_id;

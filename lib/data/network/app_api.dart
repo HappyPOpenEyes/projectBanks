@@ -42,7 +42,12 @@ abstract class AppServiceClient {
   @POST("/addcredential")
   Future<AddCredentialResponse> addcredential(
       @Header("Authorization") String token,
-      @Body() String addCredentialArray,
+      @Field("project_detail_id") String projectId,
+      @Field("hosting_id") String hostingId,
+      @Field("is_active") String isActive,
+      @Field("password") String password,
+      @Field("project_role_id") String projectRoleId,
+      @Field("username") String username,
       );
   @POST("/deletecredential")
   Future<DeleteCredentialResponse> deletecredential(

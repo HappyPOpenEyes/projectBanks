@@ -69,6 +69,7 @@ class ResponseCode {
   static const int FORBIDDEN = 403; // failure, api rejected the request
   static const int UNAUTHORISED = 401; // failure user is not authorised
   static const int NOT_FOUND = 404; // failure, api url is not correct and not found
+  static const int SAME_USER = 422;
   static const int INTERNAL_SERVER_ERROR =
   500; // failure, crash happened in server side
 

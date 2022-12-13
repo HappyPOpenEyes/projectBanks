@@ -14,11 +14,16 @@ class AddCredentialUseCase implements BaseUseCase<AddCredentialUseCaseInput, Add
   @override
   Future<Either<Failure, AddCredentialsObject>> execute(
       AddCredentialUseCaseInput input) async {
-    return await _repository.addcredential(AddCredentialsRequest(input.addCredentialArray));
+    return await _repository.addcredential(AddCredentialsRequest(input.project_detail_id,input.hosting_id,input.isActive,input.password,input.projectRoleId,input.username));
   }
 }
 
 class AddCredentialUseCaseInput {
-  String addCredentialArray;
-  AddCredentialUseCaseInput(this.addCredentialArray);
+  String project_detail_id;
+  String hosting_id;
+  String isActive;
+  String password;
+  String projectRoleId;
+  String username;
+  AddCredentialUseCaseInput(this.project_detail_id,this.hosting_id,this.isActive,this.password,this.projectRoleId,this.username);
 }

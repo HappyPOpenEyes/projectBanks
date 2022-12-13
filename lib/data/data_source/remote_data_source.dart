@@ -63,7 +63,7 @@ class RemoteDataSourceImplementer implements RemoteDataSource {
 
   @override
   Future<AddCredentialResponse> addcredential(AddCredentialsRequest addCredentialsRequest) async {
-    return await _appServiceClient.addcredential(instance<AppPreferences>().getAuthenticationToken(),addCredentialsRequest.addCredentialArray);
+    return await _appServiceClient.addcredential(instance<AppPreferences>().getAuthenticationToken(),addCredentialsRequest.project_detail_id,addCredentialsRequest.hosting_id,addCredentialsRequest.isActive,addCredentialsRequest.password,addCredentialsRequest.projectRoleId,addCredentialsRequest.username);
   }
 
   @override
